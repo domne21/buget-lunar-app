@@ -1,0 +1,12 @@
+[
+    {
+        "date": "02.02",
+        "description": "Pizza",
+        "ammount": "42"
+    },
+    {
+        "date": "03.02",
+        "description": "Cola",
+        "ammount": "10"
+    }
+]
