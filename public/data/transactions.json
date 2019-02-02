@@ -1,12 +1,22 @@
 [
-    {
-        "date": "02.02",
-        "categories": "Income",
-        "ammount": "42"
-    },
-    {
-        "date": "03.02",
-        "categories": "Rent",
-        "ammount": "10"
-    }
+  {
+    "date": "02.02",
+    "categories": "Income",
+    "ammount": "42"
+  },
+  {
+    "date": "03.02",
+    "categories": "Rent",
+    "ammount": "10"
+  },
+  {
+    "date": "2019-02-07",
+    "categories": "Transport",
+    "ammount": "15"
+  },
+  {
+    "date": "2019-02-13",
+    "categories": "Income",
+    "ammount": "10000"
+  }
 ]

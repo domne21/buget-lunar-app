@@ -1,5 +1,5 @@
 function load() {
-    $.ajax('data/transactions.json').done(function(transactions){
+    $.ajax('data/transactions.json').done(function (transactions) {
         console.info('transactions loaded', transactions);
         window.globalTransactions = transactions;
         display(transactions);
@@ -7,15 +7,26 @@ function load() {
 }
 
 function getNewRow() {
-    return `<tr>
-            <td><input type="date" name="date" placeholder="Date"/></td>
-            <td><input type="text" list="categories" name="categories" placeholder="Categories"/></td>
-            <td><input type="number" step="0.01" name="ammount" placeholder="Ammount"/></td>
-        </tr>`;
+    return ``;
+}
+
+function save() {
+    var date = document.querySelector('input[name=date]').value;
+    var categories = $('input[name=categories]').val();
+    var ammount = $('input[name=ammount]').val();
+    console.debug('saving...', date, categories, ammount);
+    
+    $.post('/transactions/create', {
+        date,
+        categories,
+        ammount
+    }).done(function(response){
+        console.warn('done creating transaction', response);
+    });
 }
 
 function display(transactions) {
-    var rows = transactions.map(function(transaction) {
+    var rows = transactions.map(function (transaction) {
         return `<tr>
             <td>${transaction.date}</td>
             <td>${transaction.categories}</td>
