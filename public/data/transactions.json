@@ -10,5 +10,35 @@
       "categories": "Rent",
       "ammount": "910",
       "transId": "1549110898015"
+   },
+   {
+      "date": "2019-02-13",
+      "categories": "Rent",
+      "ammount": "85",
+      "transId": "1549905332738"
+   },
+   {
+      "date": "2019-02-24",
+      "categories": "Rent",
+      "ammount": "500",
+      "transId": "1549907439054"
+   },
+   {
+      "date": "2019-02-20",
+      "categories": "Shopping",
+      "ammount": "250",
+      "transId": "1549907502825"
+   },
+   {
+      "date": "2019-02-20",
+      "categories": "Transport",
+      "ammount": "250",
+      "transId": "1549907545778"
+   },
+   {
+      "date": "2019-02-20",
+      "categories": "Transport",
+      "ammount": "250",
+      "transId": "1549907563231"
    }
 ]

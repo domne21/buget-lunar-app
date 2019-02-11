@@ -60,11 +60,27 @@ function initEvents() {
         console.log('edit', transToEdit, transaction);
         
         document.querySelector('input[name=date]').value = transaction.date;
-        $('input[name=categories]').val(contact.categories);
-        $('input[name=ammount]').val(contact.ammount);
-        $('input[name=transId]').val(contact.transId);
+        $('input[name=categories]').val(transaction.categories);
+        $('input[name=ammount]').val(transaction.ammount);
+        $('input[name=transId]').val(transaction.transId);
 
     });
+}
+
+function doSearch() {
+    var valueDate = $('input[name=dateS]').val();
+    var valueCategory = $('input[name=categoriesS]').val();
+    var valueAmmount = $('input[name=ammountS]').val();
+
+    console.info('am luat valoarea', valueDate, valueCategory, valueAmmount);
+
+    var filteredTransactions = globalTransactions.filter(function (transaction) {
+        return transaction.date.includes(valueDate) &&
+        transaction.categories.includes(valueCategory) &&
+        transaction.ammount.includes(valueAmmount);
+    });
+
+    display(filteredTransactions);
 }
 
 initEvents();
