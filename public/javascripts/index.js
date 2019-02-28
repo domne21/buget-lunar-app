@@ -1,5 +1,5 @@
 function load() {
-    $.ajax('data/transactions.json').done(function (transactions) {
+    $.ajax('/transactions').done(function (transactions) {
         console.info('transactions loaded', transactions);
         window.globalTransactions = transactions;
         display(transactions);
@@ -38,8 +38,8 @@ function display(transactions) {
             <td>${transaction.categories}</td>
             <td>${transaction.ammount} RON </td>
             <td>
-                <a href="/transactions/delete?transId=${transaction.transId}">&#10006;</a>
-                <a href="#" class="edit" data-id="${transaction.transId}">&#9998;</a>
+                <a href="/transactions/delete?id=${transaction.id}">&#10006;</a>
+                <a href="#" class="edit" data-id="${transaction.id}">&#9998;</a>
             </td>
         </tr>`;
     });
