@@ -57,6 +57,26 @@ router.post('/create', function(req, res, next) {
   });  
 });
 
+// /contacts/update
+router.post('/update', function(req, res, next) {
+  var id = req.body.id;
+  var date = req.body.date;
+  var categories = req.body.categories;
+  var ammount = req.body.ammount;
+
+  pool.getConnection(function(err, connection) {
+    if(err) throw err;
+    const sql = `UPDATE transactions SET date='${date}', categories="${categories}", ammount="${ammount}" WHERE id=${id};`;
+
+    console.log('my query: ', sql);
+
+    connection.query(sql, function(err, results) {
+      if(err) throw err;
+      console.log(results);
+      res.json({success: true});
+    })
+  })
+});
 
 
 module.exports = router;

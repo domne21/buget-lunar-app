@@ -16,19 +16,37 @@ function save() {
     var ammount = $('input[name=ammount]').val();
     var transId = new Date().getTime();
     console.debug('saving...', date, categories, ammount, transId);
-    
-    $.post('/transactions/create', {
+
+    var actionUrl = transToEdit ? '/transactions/update' : '/transactions/create';
+
+    $.post(actionUrl, {
+        id: transToEdit,
         date,
         categories,
         ammount,
         transId
     }).done(function(response){
-        console.warn('done creating transaction', response);
+        console.warn('done creating/updating transaction', response);
+        transToEdit='';
         if (response.success) {
             console.info('reloading..')
             load();
         }
     });
+}
+
+function update(editButton) {
+    transToEdit = editButton.getAttribute('data-id');
+
+    var transaction = globalTransactions.find(function (transaction) {
+        return transaction.id == transToEdit;
+    });
+    console.log('edit', transToEdit, transaction);
+
+    document.querySelector('input[name=date]').value = transaction.date;
+    $('input[name=categories]').val(transaction.categories);
+    $('input[name=ammount]').val(transaction.ammount);
+    $('input[name=transId]').val(transaction.transId);
 }
 
 function display(transactions) {
@@ -52,18 +70,7 @@ function display(transactions) {
 function initEvents() {
     // TODO use native click
     $("tbody").delegate( "a.edit", "click", function() {
-        transToEdit = this.getAttribute('data-id');
-
-        var transaction = globalTransactions.find(function(transaction){
-            return transaction.transId == transToEdit;
-        });
-        console.log('edit', transToEdit, transaction);
-        
-        document.querySelector('input[name=date]').value = transaction.date;
-        $('input[name=categories]').val(transaction.categories);
-        $('input[name=ammount]').val(transaction.ammount);
-        $('input[name=transId]').val(transaction.transId);
-
+        update(this);
     });
 }
 
