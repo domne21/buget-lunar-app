@@ -1,7 +1,16 @@
 var transToEdit = '';
 
+const API_URL = {
+    load: function () {
+        if (location.host === "domne21.github.io") {
+            return `data/transactions.json`
+        }
+        return 'transactions'
+    }
+};
+
 function load() {
-    $.ajax('/transactions').done(function (transactions) {
+    $.ajax(API_URL.load()).done(function (transactions) {
         console.info('transactions loaded', transactions);
         window.globalTransactions = transactions;
         display(transactions);
