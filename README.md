@@ -5,7 +5,7 @@ A simple app helping to manage your monthly money.
 
 ## Live Preview
 
-Open [buget app](https://domne21/buget-lunar-app/public/index.html)
+Open [buget app](https://domne21.github.io/buget-lunar-app/public/index.html)
 
 ## Content
 
