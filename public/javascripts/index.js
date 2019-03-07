@@ -1,3 +1,5 @@
+var transToEdit = '';
+
 function load() {
     $.ajax('/transactions').done(function (transactions) {
         console.info('transactions loaded', transactions);
@@ -23,8 +25,7 @@ function save() {
         id: transToEdit,
         date,
         categories,
-        ammount,
-        transId
+        ammount
     }).done(function(response){
         console.warn('done creating/updating transaction', response);
         transToEdit='';
