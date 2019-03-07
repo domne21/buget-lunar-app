@@ -5,7 +5,7 @@ A simple app helping to manage your monthly money.
 
 ## Live Preview
 
-Open [http://localhost:3000/] 
+Open http://localhost:3000/ 
 
 ## Content
 
