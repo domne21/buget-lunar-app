@@ -19,9 +19,16 @@ a {
   color: #00B7FF;
 }
 
-#transactions {
-  float: left;
+table {
+  margin-left:auto; 
+  margin-right:auto;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  border: 1px solid black;
 }
-#totals {
-  float: right;
+
+table.totals {
+  padding-top: 50px;
 }

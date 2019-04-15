@@ -35,11 +35,12 @@ function save() {
         date,
         categories,
         ammount
-    }).done(function(response){
+    }).done(function (response) {
         console.warn('done creating/updating transaction', response);
-        transToEdit='';
+        transToEdit = '';
         if (response.success) {
             console.info('reloading..')
+            loadTotal();
             load();
         }
     });
@@ -74,12 +75,43 @@ function display(transactions) {
     var actions = getNewRow();
     rows.push(actions);
 
-    document.querySelector('tbody').innerHTML = rows.join('');
+    document.querySelector('#transactions').innerHTML = rows.join('');
 }
+
+
+// load + display totals
+// function getTotal() {
+//     $.get('transactions/total').done((res) => {
+// 	console.log('res ', res);
+// });
+// };
+function loadTotal() {
+    $.get('transactions/total').done((total) => {
+        console.info('total loaded', total);
+        window.globalTotal = total;
+        displayTotal(total);
+    })
+}
+
+function displayTotal(total) {
+    var rows = total.map(function (total) {
+        return `<tr>
+            <td>${total.categories}</td>
+            <td>${total.total} RON </td>
+        </tr>`;
+    });
+    var actions = getNewRow();
+    rows.push(actions);
+
+    document.querySelector('#totals').innerHTML = rows.join('');
+}
+
+
+
 
 function initEvents() {
     // TODO use native click
-    $("tbody").delegate( "a.edit", "click", function() {
+    $("tbody").delegate("a.edit", "click", function () {
         update(this);
     });
 }
@@ -93,12 +125,14 @@ function doSearch() {
 
     var filteredTransactions = globalTransactions.filter(function (transaction) {
         return transaction.date.includes(valueDate) &&
-        transaction.categories.includes(valueCategory) &&
-        transaction.ammount.includes(valueAmmount);
+            transaction.categories.includes(valueCategory) &&
+            transaction.ammount.includes(valueAmmount);
     });
 
     display(filteredTransactions);
 }
 
 initEvents();
+//TODO - rename
 load();
+loadTotal();

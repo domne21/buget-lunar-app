@@ -10,12 +10,24 @@ const pool = mysql.createPool({
 });
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  pool.getConnection(function(err, connection) {
-    if(err) throw err;
+router.get('/', function (req, res, next) {
+  pool.getConnection(function (err, connection) {
+    if (err) throw err;
     const sql = "SELECT * FROM transactions";
-    connection.query(sql, function(err, results) {
-      if(err) throw err;
+    connection.query(sql, function (err, results) {
+      if (err) throw err;
+      console.log(results);
+      res.json(results);
+    })
+  })
+});
+
+router.get('/total', function (req, res, next) {
+  pool.getConnection(function (err, connection) {
+    if (err) throw err;
+    const sql = "SELECT categories, sum( ammount ) as total FROM`transactions` GROUP BY categories";
+    connection.query(sql, function (err, results) {
+      if (err) throw err;
       console.log(results);
       res.json(results);
     })
@@ -23,14 +35,14 @@ router.get('/', function(req, res, next) {
 });
 
 // /contacts/delete?id=3
-router.get('/delete', function(req, res, next) {
+router.get('/delete', function (req, res, next) {
   var id = req.query.id;
 
-  pool.getConnection(function(err, connection) {
-    if(err) throw err;
+  pool.getConnection(function (err, connection) {
+    if (err) throw err;
     const sql = `DELETE FROM transactions WHERE id=${id}`;
-    connection.query(sql, function(err, results) {
-      if(err) throw err;
+    connection.query(sql, function (err, results) {
+      if (err) throw err;
       console.log(results);
       //res.json({success: true})
       res.redirect('/index.html');
@@ -39,41 +51,41 @@ router.get('/delete', function(req, res, next) {
 });
 
 // /contacts/create
-router.post('/create', function(req, res, next) {
-  pool.getConnection(function(err, connection) {
-    if(err) throw err;
+router.post('/create', function (req, res, next) {
+  pool.getConnection(function (err, connection) {
+    if (err) throw err;
     var date = req.body.date;
     var categories = req.body.categories;
     var ammount = req.body.ammount;
     const sql = `INSERT INTO transactions (id, date, categories, ammount) VALUES (NULL, "${date}", "${categories}", "${ammount}");`;
-    
+
     console.log('query here: ', sql);
-    
-    connection.query(sql, function(err, results) {
-      if(err) throw err;
+
+    connection.query(sql, function (err, results) {
+      if (err) throw err;
       console.log(results);
-      res.json({success: true});
+      res.json({ success: true });
     })
-  });  
+  });
 });
 
 // /contacts/update
-router.post('/update', function(req, res, next) {
+router.post('/update', function (req, res, next) {
   var id = req.body.id;
   var date = req.body.date;
   var categories = req.body.categories;
   var ammount = req.body.ammount;
 
-  pool.getConnection(function(err, connection) {
-    if(err) throw err;
+  pool.getConnection(function (err, connection) {
+    if (err) throw err;
     const sql = `UPDATE transactions SET date='${date}', categories="${categories}", ammount="${ammount}" WHERE id=${id};`;
 
     console.log('my query: ', sql);
 
-    connection.query(sql, function(err, results) {
-      if(err) throw err;
+    connection.query(sql, function (err, results) {
+      if (err) throw err;
       console.log(results);
-      res.json({success: true});
+      res.json({ success: true });
     })
   })
 });
