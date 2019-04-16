@@ -34,7 +34,7 @@ npm run devstart
 
 open 
 
-## MAC db setup - only once
+<!-- ## MAC db setup - only once
 CREATE DATABASE buget_lunar;
 USE buget_lunar;
 CREATE TABLE transactions(id INT AUTO_INCREMENT, date TEXT, categories TEXT, ammount TEXT, PRIMARY KEY (ID));
@@ -51,4 +51,4 @@ INSERT INTO transactions (date,categories,ammount) VALUES("28-02-2019","Rent","1
 Starting and connecting to mariaDb:
 1. mysql.server stop
 2. mysql.server start
-3. mysql -u root
+3. mysql -u root -->
