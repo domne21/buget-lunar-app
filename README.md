@@ -11,10 +11,10 @@ Open [buget app](https://domne21.github.io/buget-lunar-app/public/index.html)
 
 
 **CRUD** operations:
-    - **A**dd your money in the table
+    - **C**reate transactions for expenses
     - **R**ead transactions from DB
     - **U**pdate transactions in DB
-    - **D**elete dates
+    - **D**elete transations
 
 
 ## Setup
